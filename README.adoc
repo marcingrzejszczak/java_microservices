@@ -1,0 +1,40 @@
+= Java Microservices Workshop
+
+Requirements:
+
+- JDK 17
+- Docker
+- Vault CLI
+- KIND - Kubernetes in Docker
+
+== How to prepare
+
+You can call the script that fetches docker images and downloads all application JARs.
+
+```
+$ ./scripts/download_everything.sh
+```
+
+Go to https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-install to learn how to install Vault CLI. Then you can make this call
+
+```
+$ vault --version
+```
+
+Go to https://kind.sigs.k8s.io/docs/user/quick-start to learn how to install KIND. If you install it then you can run this command to create a cluster
+
+```
+$ kind create cluster
+```
+
+=== Manual preparation
+
+In the sections below you can find hints on how to manually prepare your environment.
+
+==== Docker Images
+
+If you're using Windows and can't run this script then ensure that you pull the Docker images for these docker compose files (`$ docker compose pull`)
+
+- `./docker-compose.yml`
+- `./week3/part1/docker-compose.yml`
+
