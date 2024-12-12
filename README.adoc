@@ -9,6 +9,12 @@ Requirements:
 
 == How to prepare
 
+Ensure that you have JDK 17 installed. If you don't you can check SDKMAN https://sdkman.io/install/ as a tool to manage your JDK installations (and not only those). Then you'll be able to run this command and it should point out to JDK 17.
+
+```
+$ java -version
+```
+
 You can call the script that fetches docker images and downloads all application JARs.
 
 ```
@@ -21,20 +27,30 @@ Go to https://developer.hashicorp.com/vault/tutorials/getting-started/getting-st
 $ vault --version
 ```
 
+You need Docker and Docker Compose. If the following commands don't return results go to this link https://docs.docker.com/desktop/ and install Docker and Docker Compose.
+
+```
+$ docker --version
+$ docker compose version
+```
+
 Go to https://kind.sigs.k8s.io/docs/user/quick-start to learn how to install KIND. If you install it then you can run this command to create a cluster
 
 ```
 $ kind create cluster
 ```
 
-=== Manual preparation
+If you're using Windows and / or can't run the automation script (`./scripts/download_everything.sh`) then ensure that you pull the Docker images for these docker compose files (`$ docker compose pull`)
 
-In the sections below you can find hints on how to manually prepare your environment.
+- `docker-compose.yml`
+- `week3/part1/docker-compose.yml`
 
-==== Docker Images
+Run the maven command to fetch all dependencies
 
-If you're using Windows and can't run this script then ensure that you pull the Docker images for these docker compose files (`$ docker compose pull`)
+```
+$ ./mvnw dependency:go-offline
+```
 
-- `./docker-compose.yml`
-- `./week3/part1/docker-compose.yml`
+
+
 
