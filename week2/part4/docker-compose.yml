@@ -6,7 +6,7 @@ services:
       - 12345:80
 
   consul:
-    image: progrium/consul
+    image: hashicorp/consul
     command: -server -bootstrap
     ports:
       - 8400:8400
