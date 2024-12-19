@@ -3,7 +3,7 @@ services:
   consul:
     image: hashicorp/consul
     extra_hosts: ['host.docker.internal:host-gateway']
-    command: -server -bootstrap
+    command: agent -server -bootstrap-expect=1 -client=0.0.0.0 -ui
     ports:
       - 8400:8400
       - 8500:8500
