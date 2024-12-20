@@ -69,7 +69,7 @@ class LoanIssuanceController {
 	@SuppressWarnings("unchecked")
 	Mono<List> webclientFrauds() {
 		return Mono.fromRunnable(() -> System.out.println("\n\nGot webclient request\n\n"))
-				.then(factory.create("webclient")
+				.then(factory.create("OK")
 						.run(this.webClient.get().uri("http://frauddetection/frauds").retrieve().bodyToMono(List.class)));
 	}
 
@@ -77,7 +77,7 @@ class LoanIssuanceController {
 	@SuppressWarnings("unchecked")
 	Mono<List> webclientFraudsWrongUrl() {
 		return Mono.fromRunnable(() -> System.out.println("\n\nGot webclient request\n\n"))
-				.then(factory.create("webclient").run(
+				.then(factory.create("WRONG").run(
 						Mono.delay(Duration.ofMillis(500)).then(this.webClient.get().uri("http://frauddetection/wrong").retrieve().bodyToMono(List.class))
 				));
 	}
@@ -86,7 +86,7 @@ class LoanIssuanceController {
 	@SuppressWarnings("unchecked")
 	Mono<List> webclientFraudsFallback() {
 		return Mono.fromRunnable(() -> System.out.println("\n\nGot webclient request\n\n"))
-				.then(factory.create("webclient")
+				.then(factory.create("FALLBACK")
 						.run(Mono.delay(Duration.ofMillis(500)).then(this.webClient.get().uri("http://frauddetection/wrong").retrieve().bodyToMono(List.class)),
 								throwable -> Mono.just(Arrays.asList("foo", "bar"))));
 	}

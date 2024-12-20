@@ -1,5 +1,5 @@
 # curl localhost:9081/resttemplate
-GET localhost:9081/resttemplate
+GET localhost:9080/frauds
 
 
 ###
@@ -31,8 +31,8 @@ Content-Type: application/json
 
 ###
 
-# curl localhost:9081/resttemplate
-GET localhost:9081/resttemplate
+# curl localhost:9080/frauds
+GET localhost:9080/frauds
 
 
 ###
@@ -49,6 +49,11 @@ Content-Type: application/json
   "component": false
 }
 
+
+###
+
+# curl localhost:9081/resttemplate
+GET localhost:9081/resttemplate
 
 ###
 

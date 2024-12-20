@@ -3,6 +3,7 @@ package com.example.frauddetection;
 import java.util.Arrays;
 import java.util.List;
 
+import io.micrometer.tracing.Baggage;
 import io.micrometer.tracing.Tracer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,9 +49,12 @@ class BaggageController {
 
 	@GetMapping("/baggage")
 	String baggage() {
-		String mybaggage = tracer.getBaggage("mybaggage").get();
-		tracer.currentSpan().tag("mybaggage-tag", mybaggage);
-		log.info("\n\nGot baggage request, baggage equals {}\n\n", mybaggage);
-		return mybaggage;
+		Baggage baggage = tracer.getBaggage("mybaggage");
+		try (var scope = baggage.makeCurrent()) {
+			String mybaggage = baggage.get();
+			tracer.currentSpan().tag("mybaggage-tag", mybaggage);
+			log.info("\n\nGot baggage request, baggage equals {}\n\n", mybaggage);
+			return mybaggage;
+		}
 	}
 }

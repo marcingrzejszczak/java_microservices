@@ -117,7 +117,7 @@ class LoanIssuanceController {
 	@SuppressWarnings("unchecked")
 	List<String> restTemplateFrauds() {
 		System.out.println("\n\nGot rest template request\n\n");
-		return this.factory.create("rest-template")
+		return this.factory.create("OK")
 				.run(() -> this.restTemplate.getForObject("http://frauddetection/frauds", List.class));
 	}
 
@@ -125,7 +125,7 @@ class LoanIssuanceController {
 	@SuppressWarnings("unchecked")
 	List<String> restTemplateFraudsWrongUrl() {
 		System.out.println("\n\nGot rest template request\n\n");
-		return this.factory.create("rest-template")
+		return this.factory.create("WRONG")
 				.run(() -> {
 					try {
 						Thread.sleep(500);
@@ -140,7 +140,7 @@ class LoanIssuanceController {
 	@SuppressWarnings("unchecked")
 	List<String> restTemplateFraudsWithFallback() {
 		System.out.println("\n\nGot rest template request\n\n");
-		return this.factory.create("fallback")
+		return this.factory.create("FALLBACK")
 				.run(() -> {
 							try {
 								Thread.sleep(500);
