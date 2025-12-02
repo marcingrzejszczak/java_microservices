@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.restclient.RestTemplateBuilder;
 import org.springframework.cloud.circuitbreaker.springretry.SpringRetryCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.springretry.SpringRetryConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
