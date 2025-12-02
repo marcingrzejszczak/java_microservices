@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.function.RouterFunction;
 import org.springframework.web.servlet.function.ServerResponse;
 
+import static org.springframework.cloud.gateway.server.mvc.filter.BeforeFilterFunctions.uri;
 import static org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions.http;
 
 /*
@@ -41,7 +42,8 @@ public class GatewayApplication {
 		return GatewayRouterFunctions.route("httpbin_route")
 				.route(
 						GatewayRequestPredicates.path("/httpbin/**")
-								.and(GatewayRequestPredicates.cookie("spring", "cloud")), http("http://localhost:12345"))
+								.and(GatewayRequestPredicates.cookie("spring", "cloud")), http())
+				.before(uri("http://localhost:12345"))
 				.filter(FilterFunctions.stripPrefix(1)
 						.andThen(CircuitBreakerFilterFunctions.circuitBreaker("httpBinCircuitBreaker"))
 						.andThen(FilterFunctions.addResponseHeader("X-Spring-Cloud", "Workshops Response"))
