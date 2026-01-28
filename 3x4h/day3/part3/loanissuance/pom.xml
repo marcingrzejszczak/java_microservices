@@ -16,7 +16,9 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2025.1.0</spring-cloud.version>
-		<chaos-monkey-spring-boot.version>3.2.2</chaos-monkey-spring-boot.version>
+
+		<!-- TODO: Change me once Spring Boot Chaos Monkey has a stable Boot 4.x compatible release -->
+		<chaos-monkey-spring-boot.version>4.0.0-M1</chaos-monkey-spring-boot.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -51,8 +53,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
 		</dependency>
-		<dependency>
+
+		<!-- TODO: Bring me back once Spring Boot Chaos Monkey has a stable Boot 4.x compatible release -->
+		<!--<dependency>
 			<groupId>de.codecentric</groupId>
+			<artifactId>chaos-monkey-spring-boot</artifactId>
+			<version>${chaos-monkey-spring-boot.version}</version>
+		</dependency>-->
+		<!-- TODO: Remove me once Spring Boot Chaos Monkey has a stable Boot 4.x compatible release -->
+		<dependency>
+			<groupId>com.github.marcingrzejszczak</groupId>
 			<artifactId>chaos-monkey-spring-boot</artifactId>
 			<version>${chaos-monkey-spring-boot.version}</version>
 		</dependency>
@@ -89,4 +99,12 @@
 		</plugins>
 	</build>
 
+
+	<!-- TODO: Remove me once Spring Boot Chaos Monkey has a stable Boot 4.x compatible release -->
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 </project>
