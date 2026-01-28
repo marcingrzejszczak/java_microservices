@@ -13,27 +13,29 @@
 spring:
   cloud:
     gateway:
-      routes:
-        - id: fraud
-          uri: lb://loanissuance/
-          predicates:
-            - Header=X-Operation-Type, Fraud
-            - Method=GET
-            - Path=/check/account
-          filters:
-            - StripPrefix=1
-            - name: CircuitBreaker
-              args:
-                name: loanIssuanceCircuitBreaker
-                fallbackUri: forward:/fallback
-                statusCodes:
-                  - 404
-        - id: loanissuance-fallback
-          uri: lb://loanissuance/
-          predicates:
-            - Path=/fallback
-          filters:
-            - SetPath=/resttemplate
+      server:
+        webflux:
+          routes:
+            - id: fraud
+              uri: lb://loanissuance/
+              predicates:
+                - Header=X-Operation-Type, Fraud
+                - Method=GET
+                - Path=/check/account
+              filters:
+                - StripPrefix=1
+                - name: CircuitBreaker
+                  args:
+                    name: loanIssuanceCircuitBreaker
+                    fallbackUri: forward:/fallback
+                    statusCodes:
+                      - 404
+            - id: loanissuance-fallback
+              uri: lb://loanissuance/
+              predicates:
+                - Path=/fallback
+              filters:
+                - SetPath=/resttemplate
   application:
     name: gateway # required for service discovery
 
