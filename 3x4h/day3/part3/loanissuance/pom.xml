@@ -65,6 +65,12 @@
 			<groupId>com.github.marcingrzejszczak</groupId>
 			<artifactId>chaos-monkey-spring-boot</artifactId>
 			<version>${chaos-monkey-spring-boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>chaos-monkey-demo-app-unleash-toggles</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
